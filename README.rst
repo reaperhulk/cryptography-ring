@@ -24,6 +24,7 @@ Issues
 * Right now only ``HashBackend`` is supported.
 * When adding the ``ring`` entry point for multibackend it is injected as the
   first element in the array. This is probably not desirable.
+* Use of bare asserts.
 
 .. _`cryptography`: https://cryptography.io/
 .. _`ring-ffi`: https://github.com/briansmith/ring-ffi
