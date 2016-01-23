@@ -1,0 +1,11 @@
+[run]
+branch = True
+source =
+    cryptography_ring
+
+
+[paths]
+source =
+   src/cryptography_ring
+   .tox/*/lib/python*/site-packages/cryptography_ring
+   .tox/pypy/site-packages/cryptography_ring
