@@ -14,7 +14,7 @@ __summary__ = ("cryptography-ring is a backend for PyCA/cryptography that "
                "exposes the ring cryptography library.")
 __uri__ = "https://github.com/reaperhulk/cryptography-ring"
 
-__version__ = "0.1dev1"
+__version__ = "0.1.dev1"
 
 __author__ = "Paul Kehrer"
 __email__ = "paul.l.kehrer@gmail.com"

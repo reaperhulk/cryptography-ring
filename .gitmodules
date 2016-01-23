@@ -1,0 +1,6 @@
+[submodule "cryptography"]
+	path = cryptography
+	url = https://github.com/pyca/cryptography
+[submodule "ring-ffi"]
+	path = src/ring-ffi
+	url = https://github.com/briansmith/ring-ffi

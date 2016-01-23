@@ -2,5 +2,7 @@ include LICENSE
 include LICENSE.APACHE
 include LICENSE.BSD
 include README.rst
+include rust_ext.py
 
 recursive-include docs *
+recursive-include src/ring-ffi *

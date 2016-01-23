@@ -4,6 +4,7 @@
 
 from __future__ import absolute_import, division, print_function
 
+import glob
 import os
 
 import cffi
@@ -24,7 +25,9 @@ void ring_digest_context_update(RingDigestContext *, char *, unsigned int);
 unsigned int ring_digest_context_finish(RingDigestContext *, char *,
                                         unsigned int);
 """)
-lib = ffi.dlopen(os.environ.get("RINGFFI_PATH"))
+current_dir = os.path.abspath(os.path.dirname(__file__))
+lib_path = glob.glob(os.path.join(current_dir, "ringffi.so"))
+lib = ffi.dlopen(lib_path[0])
 
 
 class Binding(object):

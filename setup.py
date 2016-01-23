@@ -9,6 +9,8 @@ from __future__ import absolute_import, division, print_function
 import os
 import sys
 
+from rust_ext import build_rust_cmdclass, install_lib_including_rust
+
 from setuptools import find_packages, setup
 
 
@@ -76,8 +78,14 @@ setup(
     packages=find_packages(where="src"),
     install_requires=requirements,
     tests_require=test_requirements,
-
-    zip_safe=True,
+    cmdclass={
+        "build_rust": build_rust_cmdclass(
+            os.path.join("src", "ring-ffi", "Cargo.toml")
+        ),
+        "install_lib": install_lib_including_rust,
+    },
+    ext_package="cryptography_ring",
+    zip_safe=False,
     entry_points={
         "cryptography.backends": backends,
     }

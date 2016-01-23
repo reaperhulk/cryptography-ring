@@ -12,4 +12,3 @@ htmlcov/
 .eggs/
 *.py[co]
 .hypothesis/
-cryptography/
