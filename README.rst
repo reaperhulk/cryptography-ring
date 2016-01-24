@@ -1,6 +1,10 @@
 Cryptography-ring
 =================
 
+.. image:: https://travis-ci.org/reaperhulk/cryptography-ring.svg?branch=master
+    :target: https://travis-ci.org/reaperhulk/cryptography-ring
+
+
 **At this time this should be considered experimental software and not ready for
 any sort of production use.**
 
