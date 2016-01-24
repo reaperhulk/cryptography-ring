@@ -6,25 +6,37 @@ cache:
 
 matrix:
   include:
-    - language: generic
-      os: osx
-      osx_image: xcode7.2
+#    - language: generic
+#      os: osx
+#      osx_image: xcode7.2
+#      env: TOXENV=py27
+    - language: rust
       env: TOXENV=py27
 
 
 install:
   - |
-    brew update
-    brew install rust
     curl -O https://bootstrap.pypa.io/get-pip.py
     python get-pip.py --user
     python -m pip install --user virtualenv
     python -m virtualenv ~/.venv
     source ~/.venv/bin/activate
+    if [[ "$(uname -s)" == 'Darwin' ]]; then
+      brew update
+      brew install rust
+    fi
     pip install tox codecov
 
 script:
-  - CRYPTOGRAPHY_OSX_NO_LINK_FLAGS=1 LDFLAGS="/usr/local/opt/openssl/lib/libcrypto.a /usr/local/opt/openssl/lib/libssl.a" CFLAGS="-I/usr/local/opt/openssl/include" tox
+  - |
+    if [[ "$(uname -s)" == 'Darwin' ]]; then
+      export CRYPTOGRAPHY_OSX_NO_LINK_FLAGS=1
+      export LDFLAGS="/usr/local/opt/openssl/lib/libcrypto.a /usr/local/opt/openssl/lib/libssl.a"
+      export CFLAGS="-I/usr/local/opt/openssl/include"
+    fi
+    rustc -Vv
+    env
+    tox
 
 after_success:
   - |
