@@ -25,3 +25,7 @@ install:
 
 script:
   - CRYPTOGRAPHY_OSX_NO_LINK_FLAGS=1 LDFLAGS="/usr/local/opt/openssl/lib/libcrypto.a /usr/local/opt/openssl/lib/libssl.a" CFLAGS="-I/usr/local/opt/openssl/include" tox
+
+
+notifications:
+  email: false
