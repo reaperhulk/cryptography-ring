@@ -1,0 +1,27 @@
+sudo: false
+language: python
+cache:
+  directories:
+    - $HOME/.cache/pip
+
+matrix:
+  include:
+    - language: generic
+      os: osx
+      osx_image: xcode7.2
+      env: TOXENV=py27
+
+
+install:
+  - |
+    brew update
+    brew install rust
+    curl -O https://bootstrap.pypa.io/get-pip.py
+    python get-pip.py --user
+    python -m pip install --user virtualenv
+    python -m virtualenv ~/.venv
+    source ~/.venv/bin/activate
+    pip install tox codecov
+
+script:
+  - CRYPTOGRAPHY_OSX_NO_LINK_FLAGS=1 LDFLAGS="/usr/local/opt/openssl/lib/libcrypto.a /usr/local/opt/openssl/lib/libssl.a" CFLAGS="-I/usr/local/opt/openssl/include" tox
