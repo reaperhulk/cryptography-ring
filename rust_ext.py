@@ -66,8 +66,10 @@ class RustBuildCommand(Command):
             # which causes pythonXX-sys to fall back to detecting the
             # interpreter from the path.
             "PYTHON_2.7_NO_PKG_CONFIG": "1",
-            "PATH":  bindir + os.pathsep + os.environ.get("PATH", "")
+            "PATH": bindir + os.pathsep + os.environ.get("PATH", "")
         }
+        # copy the current environment and then update it with those keys
+        env = os.environ.copy().update(env)
 
         # Execute cargo.
         try:
