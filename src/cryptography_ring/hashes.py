@@ -20,6 +20,9 @@ class _HashContext(object):
                 ctx = self._backend._lib.ring_digest_context_new(
                     self._backend._hash_mapping[self.algorithm.name]()
                 )
+                ctx = self._backend._ffi.gc(
+                    ctx, self._backend._lib.ring_digest_context_delete
+                )
             except KeyError:
                 raise UnsupportedAlgorithm(
                     "{0} is not a supported hash on this backend.".format(
@@ -34,6 +37,9 @@ class _HashContext(object):
     def copy(self):
         new_ctx = self._backend._lib.ring_digest_context_clone(self._ctx)
         assert new_ctx != self._backend._ffi.NULL
+        new_ctx = self._backend._ffi.gc(
+            new_ctx, self._backend._lib.ring_digest_context_delete
+        )
 
         return _HashContext(self._backend, self.algorithm, ctx=new_ctx)
 

@@ -24,6 +24,7 @@ RingDigestContext *ring_digest_context_clone(RingDigestContext *);
 void ring_digest_context_update(RingDigestContext *, char *, unsigned int);
 unsigned int ring_digest_context_finish(RingDigestContext *, char *,
                                         unsigned int);
+void ring_digest_context_delete(RingDigestContext *);
 """)
 current_dir = os.path.abspath(os.path.dirname(__file__))
 lib_path = glob.glob(os.path.join(current_dir, "ringffi.so"))
